@@ -16,4 +16,8 @@ SweeD
 **Running the SweeD Analysis**
 
 1. Executing the SweeD Script
-2. sbatch  03.Sweed.exec.sh 
+2. sbatch  03.Sweed.exec.sh
+   
+**Prepare SweeD report for plotting**
+
+1.perl parseres.pl
