@@ -11,12 +11,12 @@ SweeD
 **Data Preparation**
 
 1. Processing the VCF File
-2. run sbatch 02.Sweed.prep.sh
+2. run sbatch 01.Sweed.prep.sh
 
 **Running the SweeD Analysis**
 
 1. Executing the SweeD Script
-2. sbatch  03.Sweed.exec.sh
+2. sbatch  02.Sweed.exec.sh
    
 **Prepare SweeD report for plotting**
 
@@ -24,5 +24,5 @@ SweeD
 
 **Plot with R**
 
-1.SweeD_plotting.R
+1.03.SweeD_plotting.R
 
