@@ -21,3 +21,7 @@ SweeD
 **Prepare SweeD report for plotting**
 
 1.perl parseres.pl
+
+**Plot with R**
+1.SweeD_plotting.R
+
