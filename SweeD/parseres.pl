@@ -1,5 +1,13 @@
 use strict;
 # Input file: SweeD_Report.EGT, with chromosomes indicated by //1, for instance
+print "\n**********************************************************";
+print "\n*    parseres.pl                *";
+print "\n*    Author: Kiwoong Nam                                *";
+print "\n*    Date: 20240525        *";
+print "\n*    CopyRight @ INRAe                    Licence GNU GPL  *";
+print "\n**********************************************************";
+print "\n Prepare SweeD report for plotting                      ";
+print "\n**********************************************************\n";
 
 
 # Définition du répertoire contenant les fichiers SweeD
