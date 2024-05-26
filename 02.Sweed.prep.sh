@@ -13,7 +13,7 @@
 
 # Set the VCF file variable
 vcfF=EGT.noN.CHROM.recode.vcf.gz
-tempF=EGT.SweeD.vcf.gz
+tempF=EGT.SweeD.vcf
 
 # Change to the directory where the SWEED analysis will be run
 cd /lustre/durandk/PCA/SWEED
