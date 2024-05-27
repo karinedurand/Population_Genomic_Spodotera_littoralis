@@ -20,9 +20,15 @@ SweeD
    
 **Prepare SweeD report for plotting**
 
-1.perl parseres.pl
+1.perl 03.parseres.pl
 
 **Plot with R**
 
-1.03.SweeD_plotting.R
+1.04.SweeD_plotting.R
+
+**Find outliers gene in gff**
+
+perl 05.Genefinding.pl
+
+
 
