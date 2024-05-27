@@ -24,7 +24,11 @@ SweeD
 
 **Plot with R**
 
-1.04.SweeD_plotting.R
+1.03.SweeD_plotting.R
+
+**Extract ouliers**
+
+1 04.Extract_SweeD_outliers.R
 
 **Find outliers gene in gff**
 
