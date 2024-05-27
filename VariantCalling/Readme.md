@@ -17,7 +17,7 @@ sbatch 02.remove_adaptator_slitto.sh
 **Usage**:
 sbatch 03.Sf.mapping.slitto.sh
 
-###04.gatk.sh
+### 04.gatk.sh
 **Purpose**: This script performs variant calling using the GATK toolkit.
 **Usage**:
 sbacth 04.gatk.sh
