@@ -20,7 +20,7 @@ sbatch 03.Sf.mapping.slitto.sh sample_name --output sample_name.out
 ### 04.gatk.sh
 **Purpose**: This script performs variant calling using the GATK toolkit.
 **Usage**:
-sbacth 04.gatk.sh
+sbacth 04.gatk.sh sample_name
 
 ### script_MergedGVCFs_slittonewref.sh
 **Purpose**: This script merges the variant call files from multiple samples.
