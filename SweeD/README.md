@@ -4,8 +4,17 @@ This repository provides a set of scripts to run a SweeD analysis, which detects
 
 1. **Processing the VCF File**  
    First, prepare the VCF file for analysis.
-
-2. **Run the SweeD Preparation Script**  
-   Execute the preparation script with the following command:  
-   ```bash
    sbatch 01.Sweed.prep.sh
+2. **Run the SweeD Analysis** 
+   Once the data is prepared, run the SweeD analysis using the command:
+   sbatch 02.Sweed.exec.sh
+3. **Run the SweeD Analysis** 
+   Prepare SweeD Report for Plotting
+   perl 03.parseres.pl
+4. **Run the SweeD Analysis** 
+   Plot Results with R
+   03.SweeD_plotting.R
+5. **Extract Outliers**  
+   Extract the outliers from the SweeD results with the command
+   04.Extract_SweeD_outliers.R
+
