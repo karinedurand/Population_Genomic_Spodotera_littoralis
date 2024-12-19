@@ -35,11 +35,9 @@ CHROM.1    44022.3555  3.527988e-02 3.538850e-03 42484.0000  47390.0000
 ```
 ### 3. **Plot the SweeD Results**
 Visualize the parsed SweeD results using the R script `03.SweeD_plotting.R`.
-Rscript 03.SweeD_plotting.R
 
 ### 4. **Extract Outliers**
 Identify outlier regions from the SweeD results with the script `04.Extract_SweeD_outliers.R`.
-4.Extract_SweeD_outliers.R
 ```
 **Output File:** `result_selected_data_SweeD_SA_0.9995.csv`
 - This file contains the outlier regions and will be used as input for the next step.
@@ -47,15 +45,14 @@ Identify outlier regions from the SweeD results with the script `04.Extract_Swee
 ### 6. **Find Genes Associated with Outliers**
 Finally, identify the genes corresponding to the outlier regions using the GFF file containing genomic annotations.
 perl 05.genefinding.pl
-```
 
+```
 **Input Files:**
 - GFF file with genomic annotations.
 - CSV file with outlier regions (`result_selected_data_SweeD_SA_0.9995.csv`).
+```
 
----
-
-## Summary
+### **Summary**
 
 This pipeline provides a complete workflow for detecting and analyzing selective sweeps in genomic data. Ensure that all input files (e.g., VCF and GFF) are formatted correctly before starting the analysis. Each script is designed to be executed sequentially, and outputs from earlier steps are used as inputs for subsequent ones.
 
