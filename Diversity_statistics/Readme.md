@@ -5,7 +5,7 @@ This repository contains scripts for performing key population genetics analyses
 The pipeline includes the following steps:
 
 1. **Calculating dXY**: Script `dXY.sh` computes the dXY statistic using the dependency [Dxy](https://github.com/hugang123/Dxy).
-2. **Calculating FST**: Script `popstats.Fst.sh` calculates FST values for assessing population differentiation.
+2. **Calculating FST**: Script `popstats.Fst.sh` calculates FST values for assessing population differentiation. Use a pop file (a sample list in column)
 3. **Calculating Nucleotide Diversity (π)**: Script `popstats.pi.sh` calculates nucleotide diversity.
 
 - **Dependency**: [Dxy GitHub Repository](https://github.com/hugang123/Dxy)
