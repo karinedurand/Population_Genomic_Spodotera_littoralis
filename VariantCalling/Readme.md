@@ -15,7 +15,7 @@ sbatch 02.remove_adaptator_slitto.sh
 ### 03.Sf.mapping.slitto.sh
 **Purpose**: This script maps the cleaned reads to the reference genome.
 **Usage**:
-sbatch 03.Sf.mapping.slitto.sh --output sample_name.out
+sbatch 03.Sf.mapping.slitto.sh sample_name --output sample_name.out
 
 ### 04.gatk.sh
 **Purpose**: This script performs variant calling using the GATK toolkit.
