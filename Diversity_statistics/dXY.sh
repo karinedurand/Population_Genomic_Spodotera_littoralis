@@ -1,25 +1,47 @@
 #!/bin/bash
-#SBATCH -p dgimi-eha
-#SBATCH -c 12
-#SBATCH --mem=120G
+#SBATCH -p cpu-dedicated
+#SBATCH --account=dedicated-cpu@dgimi-eha
+#SBATCH --array=1-29
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
 
-cd /lustre/durandk/slitto_newref/VariantCalling/diversity
+cd /home/durandk/scratch_durandk/GenFAW600/FST_DXY_Windows/
 
-# Optional: Uncomment the following lines if you need to compress and index your VCF file
+# Définir les comparaisons de populations
+#Adaptations locales le long du corridor d'expansion africain Inv_east vs Inv_west 
+#Loci responsables de l'adaptation à la plante hôte  "Nat_C_Nat_R"
+#Loci sous sélection spécifique lors du passage de l'Amérique à l'Afrique Nat_C vs Inv_west
+#Identifier les loci responsables de la dérive/différenciation propre au Sénégal : Inv_west vs Sen
+POP_PAIRS=(
+  "Inv-east_Inv-west-sen1"
+  "Nat-C_Nat-R"
+  "Inv-west-sen1_Nat-C"
+  "Inv-west108_Sen1"
+)
 
-/storage/simple/projects/faw_adaptation/programs/htslib-1.9/bgzip -c /storage/simple/projects/faw_adaptation/Merged_vcf/slitto_2023_newref/slittonewref_2023.SNP.filtered.recode.vcf >/lustre/durandk/slitto_newref/VariantCalling/diversity/slittonewref_2023.SNP.filtered.recode.vcf.gz
-#index the vcf file
-/storage/simple/projects/faw_adaptation/programs/htslib-1.9/tabix -p vcf /lustre/durandk/slitto_newref/VariantCalling/diversity/slittonewref_2023.SNP.filtered.recode.vcf.gz
+# Reconstruction du nom exact du chromosome/scaffold
+CHR_ID="HiC_scaffold_${SLURM_ARRAY_TASK_ID}"
 
+VCF_SRC="/storage/simple/projects/faw_adaptation/Data_Backup/Merged_vcf/2026_GenFAW_merged_bam/GenFAW2026.allchr.biallelic_snp.miss05.vcf.gz"
+VCF_TMP="${CHR_ID}.vcf.gz"
 
-## Loop through chromosomes 1 to 31
-for i in {1..31}
-do
-/storage/simple/projects/faw_adaptation/programs/htslib-1.9/tabix -h /lustre/durandk/slitto_newref/VariantCalling/diversity/slittonewref_2023.SNP.filtered.recode.vcf.gz  HiC_scaffold_$i | gzip -f > chr$i.vcf.gz
-  python3 /lustre/durandk/slitto_newref/VariantCalling/diversity/Dxy-master/Dxy_calculate -v CHROM.$i.vcf -p ML_EGT.txt   -o ML_EGT.$i    -w 500000 -s 50000
-  python3 /lustre/durandk/slitto_newref/VariantCalling/diversity/Dxy-master/Dxy_calculate -v CHROM.$i.vcf -p SA_EGT.txt   -o SA_EGT.$i    -w 500000 -s 50000
-  python3 /lustre/durandk/slitto_newref/VariantCalling/diversity/Dxy-master/Dxy_calculate -v CHROM.$i.vcf -p MLSA_EGT.txt -o MLSA_EGT.$i  -w 500000 -s 50000
-# rm chr$i.vcf.gz
+source /home/durandk/miniconda3/etc/profile.d/conda.sh
+conda activate bgzip_tabix
+
+# Extraction du scaffold correspondant
+tabix -h "$VCF_SRC" "$CHR_ID" | bgzip -c > "$VCF_TMP"
+tabix -p vcf "$VCF_TMP"
+
+conda deactivate
+
+module load bioinfo-cirad
+module load anaconda/python3.8
+
+# Calcul du Dxy pour chaque paire de populations
+for PAIR in "${POP_PAIRS[@]}"; do
+    POP1=${PAIR%%_*}
+    POP2=${PAIR##*_}
+    OUTNAME="${POP1}_${POP2}_${CHR_ID}.dxy"
+    
+    python3 Dxy_calculate -v "$VCF_TMP" -p "$PAIR" -o "$OUTNAME" -w 100000 -s 10000
 done
-
-
